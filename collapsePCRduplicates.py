@@ -139,7 +139,7 @@ for chr in chr_list:
 
     print "numberReadsUnique: ",numberReadsUnique
     print "numberReadsUniquePlusMultiMapped: ",numberReadsUniquePlusMultiMapped
-
+    print "mappedReads length: ",len(mappedReads)
 
     #creates dictionary consisting of read position values
     counter_chr=collections.Counter(position)
@@ -180,7 +180,11 @@ for chr in chr_list:
             for read in samfile.fetch(chr,key,key+1):
                 if read.reference_start==key:
                     Read.append(read)
-                    setReads.add(read.query_name.split("_")[3]+"_"+read.query_sequence)
+                    #Identify UMI
+                    if args.c:
+                        setReads.add(read.query_name.split("_")[1]+"_"+read.query_sequence)
+                    else:
+                        setReads.add(read.query_name.split("_")[3]+"_"+read.query_sequence)
 
         #print key,val
 
