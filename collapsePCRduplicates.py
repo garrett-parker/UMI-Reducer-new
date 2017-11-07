@@ -196,12 +196,20 @@ for chr in chr_list:
             notsetReads.clear()
             numberReadsUnique_covGreated1+=len(setReads)
             for i in range(0,val):
-                if Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence in setReads and Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence not in notsetReads:
-                        outfile.write(Read[i])
-                        numberReadsUnique_filtered+=1
-                        readLength_filtered.append(len(Read[i].query_sequence))
-                        notsetReads.add(Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence)
-                        readSet.add(Read[i].query_name)
+                if args.c:
+                    if Read[i].query_name.split("_")[1]+"_"+Read[i].query_sequence in setReads and Read[i].query_name.split("_")[1]+"_"+Read[i].query_sequence not in notsetReads:
+                            outfile.write(Read[i])
+                            numberReadsUnique_filtered+=1
+                            readLength_filtered.append(len(Read[i].query_sequence))
+                            notsetReads.add(Read[i].query_name.split("_")[1]+"_"+Read[i].query_sequence)
+                            readSet.add(Read[i].query_name)
+                else:
+                    if Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence in setReads and Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence not in notsetReads:
+                            outfile.write(Read[i])
+                            numberReadsUnique_filtered+=1
+                            readLength_filtered.append(len(Read[i].query_sequence))
+                            notsetReads.add(Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence)
+                            readSet.add(Read[i].query_name)
 
 
 
