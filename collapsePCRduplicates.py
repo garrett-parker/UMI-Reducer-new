@@ -106,7 +106,7 @@ outfile = pysam.AlignmentFile(out, "wb", header=bam_header)
 print "Open ",bam, "via pysam"
 
 
-
+pdb.set_trace()
 
 for chr in chr_list:
     dict.clear()
@@ -150,8 +150,6 @@ for chr in chr_list:
     count=0
 
     print  "Processing", len(counter_chr.items()), "items"
-
-    pdb.set_trace()
 
     for key,val in counter_chr.items():
         #print key,val
