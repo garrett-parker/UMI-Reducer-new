@@ -9,7 +9,7 @@ import matplotlib
 matplotlib.use('Agg') # Must be before importing matplotlib.pyplot or pylab!
 import matplotlib.pyplot as plt
 import pdb
-pdb.set_trace()
+
 
 #updated 09/04/2015
 
@@ -150,6 +150,8 @@ for chr in chr_list:
     count=0
 
     print  "Processing", len(counter_chr.items()), "items"
+
+    pdb.set_trace()
 
     for key,val in counter_chr.items():
         #print key,val
