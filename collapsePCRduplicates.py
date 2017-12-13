@@ -106,7 +106,6 @@ outfile = pysam.AlignmentFile(out, "wb", header=bam_header)
 print "Open ",bam, "via pysam"
 
 
-pdb.set_trace()
 
 for chr in chr_list:
     dict.clear()
