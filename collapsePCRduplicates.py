@@ -118,7 +118,8 @@ for chr in chr_list:
     for read in samfile.fetch(chr):
         #stores the name of the read in mappedReads
         mappedReads.append(read.query_name)
-
+        
+        print read
 
         if args.m:
             if read.mapq==50:
