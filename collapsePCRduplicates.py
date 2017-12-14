@@ -118,8 +118,6 @@ for chr in chr_list:
     for read in samfile.fetch(chr):
         #stores the name of the read in mappedReads
         mappedReads.append(read.query_name)
-        
-
         if args.m:
             if read.mapq==50:
                 numberReadsUnique+=1
