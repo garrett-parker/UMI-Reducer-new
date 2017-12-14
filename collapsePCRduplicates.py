@@ -129,7 +129,6 @@ for chr in chr_list:
         else:
             #checks that the mapping quality of the read is equal to 50
             #if read.mapq==50:
-                
                 #increments numberReadsUnique
                 numberReadsUnique+=1
                 #stores the start position of the read
