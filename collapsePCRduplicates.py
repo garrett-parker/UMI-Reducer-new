@@ -123,7 +123,8 @@ for chr in chr_list:
                 numberReadsUnique+=1
             numberReadsUniquePlusMultiMapped+=1
             position.append(read.reference_start)
-            readLength.append(len(read.query_sequence))
+            #variable readLength is not used again
+            #readLength.append(len(read.query_sequence))
         else:
             #checks that the mapping quality of the read is equal to 50
             if read.mapq==50:
@@ -132,7 +133,8 @@ for chr in chr_list:
                 #stores the start position of the read
                 position.append(read.reference_start)
                 #stores the length of the read
-                readLength.append(len(read.query_sequence))
+                #variable readLength isn't used again
+                #readLength.append(len(read.query_sequence))
 
 
     print "numberReadsUnique: ",numberReadsUnique
