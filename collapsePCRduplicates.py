@@ -123,8 +123,9 @@ for chr in chr_list:
                 numberReadsUnique+=1
             numberReadsUniquePlusMultiMapped+=1
             position.append(read.reference_start)
-            #variable readLength is not used again
-            #readLength.append(len(read.query_sequence))
+            #stores length of read if not using umi-tools flag --c
+            if !args.c:
+                readLength.append(len(read.query_sequence))
         else:
             #checks that the mapping quality of the read is equal to 50
             if read.mapq>=10:
@@ -132,9 +133,9 @@ for chr in chr_list:
                 numberReadsUnique+=1
                 #stores the start position of the read
                 position.append(read.reference_start)
-                #stores the length of the read
-                #variable readLength isn't used again
-                #readLength.append(len(read.query_sequence))
+                #stores the length of the read if not using umi-tools flag --c
+                if !args.c:
+                    readLength.append(len(read.query_sequence))
 
 
     print "numberReadsUnique: ",numberReadsUnique
@@ -160,7 +161,9 @@ for chr in chr_list:
             for read in samfile.fetch(chr,key,key+1):
                 if read.reference_start==key:
                     outfile.write(read)
-                    readLength_filtered.append(len(read.query_sequence))
+                    #adds read length to readLength_filtered in not using umi-tools flag --c
+                    if !args.c:
+                        readLength_filtered.append(len(read.query_sequence))
                     numberReadsUnique_filtered+=1
                     readSet.add(read.query_name)
 
