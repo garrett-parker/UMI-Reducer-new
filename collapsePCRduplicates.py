@@ -124,7 +124,7 @@ for chr in chr_list:
             numberReadsUniquePlusMultiMapped+=1
             position.append(read.reference_start)
             #stores length of read if not using umi-tools flag --c
-            if !args.c:
+            if args.c== false:
                 readLength.append(len(read.query_sequence))
         else:
             #checks that the mapping quality of the read is equal to 50
@@ -134,7 +134,7 @@ for chr in chr_list:
                 #stores the start position of the read
                 position.append(read.reference_start)
                 #stores the length of the read if not using umi-tools flag --c
-                if !args.c:
+                if args.c==false:
                     readLength.append(len(read.query_sequence))
 
 
@@ -162,7 +162,7 @@ for chr in chr_list:
                 if read.reference_start==key:
                     outfile.write(read)
                     #adds read length to readLength_filtered in not using umi-tools flag --c
-                    if !args.c:
+                    if args.c==false:
                         readLength_filtered.append(len(read.query_sequence))
                     numberReadsUnique_filtered+=1
                     readSet.add(read.query_name)
