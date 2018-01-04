@@ -186,11 +186,11 @@ for chr in chr_list:
                     Read.append(read)
                     if args.end:
                         #UMI-tools format
-                        if args.e:
-                            setReads.add(addUMI())
+                        #if args.e:
+                        setReads.add(addUMI())
                         #default format
-                        else:
-                            setReads.add(read.query_name.split("_")[3] + "_" + read.query_sequence)
+                        #else:
+                            #setReads.add(read.query_name.split("_")[3] + "_" + read.query_sequence)
                     else:
                         #UMI-tools format
                         if args.e:
