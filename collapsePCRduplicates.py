@@ -48,7 +48,7 @@ def extendReadName():
         index =1
     else:
         index = 3
-    new = Read[i].query_name.split("_")[index] + "_" + str(Read[i].query_sequence))
+    new = (Read[i].query_name.split("_")[index] + "_" + str(Read[i].query_sequence))
     return new
 
 
