@@ -20,12 +20,35 @@ def editDistance(s1,s2):
             k+=1
     return k
 
-def addUMI():
+def add_readname2set():
     if args.e:
-        i = 1
+        index = 1
     else:
-        i = 3
-    new = read.query_name.split("_")[i] + "_" + str(read.query_sequence)
+        index = 3
+    new = read.query_name.split("_")[index] + "_" + str(read.query_sequence)
+    return new
+
+def add_readNameEnd2set():
+    if args.e:
+        new = (read.query_name.split("_")[1]+"_"+str(read.query_sequence)+"_"+str(read.reference_end))
+    else:
+        new = (read.query_name.split("_")[3]+"_"+str(read.query_sequence)+"_"+str(read.reference_end))
+    return new
+
+def extendReadNameEnd():
+    if args.e:
+        index =1
+    else:
+        index = 3
+    new = Read[i].query_name.split("_")[index] + "_" + str(Read[i].query_sequence)+"_"+str(Read[i].reference_end)
+    return new
+
+def extendReadName():
+    if args.e:
+        index =1
+    else:
+        index = 3
+    new = Read[i].query_name.split("_")[index] + "_" + str(Read[i].query_sequence))
     return new
 
 
@@ -187,17 +210,18 @@ for chr in chr_list:
                     if args.end:
                         #UMI-tools format
                         #if args.e:
-                        setReads.add(addUMI())
+                        setReads.add(add_readNameEnd2set())
                         #default format
                         #else:
                             #setReads.add(read.query_name.split("_")[3] + "_" + read.query_sequence)
                     else:
                         #UMI-tools format
-                        if args.e:
-                            setReads.add(read.query_name.split("_")[1]+"_"+str(read.query_sequence))
+                        setReads.add(add_readname2set())
+                        #if args.e:
+                            #setReads.add(read.query_name.split("_")[1]+"_"+str(read.query_sequence))
                         #default format
-                        else:
-                            setReads.add(read.query_name.split("_")[3]+"_"+read.query_sequence+"_"+str(read.reference_end))
+                        #else:
+                            #setReads.add(read.query_name.split("_")[3]+"_"+read.query_sequence+"_"+str(read.reference_end))
 
 
                     #print (read.query_sequence,read.query_name,read.query_name.split("_")[3],read.reference_start,read.reference_end)
@@ -210,18 +234,20 @@ for chr in chr_list:
             for i in range(0,val):
                 if args.end:
                     #UMI-tools format
-                    if args.e:
-                        extended_read_name = Read[i].query_name.split("_")[1] + "_" + str(Read[i].query_sequence)+"_"+str(Read[i].reference_end)
+                    extended_read_name = extendReadNameEnd()
+                    #if args.e:
+                        #extended_read_name = Read[i].query_name.split("_")[1] + "_" + str(Read[i].query_sequence)+"_"+str(Read[i].reference_end)
                     #default format
-                    else:
-                        extended_read_name = Read[i].query_name.split("_")[3] + "_" + Read[i].query_sequence+"_"+str(Read[i].reference_end)
+                    #else:
+                        #extended_read_name = Read[i].query_name.split("_")[3] + "_" + Read[i].query_sequence+"_"+str(Read[i].reference_end)
                 else:
                     #UMI-tools format
-                    if args.e:
-                        extended_read_name=Read[i].query_name.split("_")[1]+"_"+str(Read[i].query_sequence)
+                    extended_read_name = extendReadName()
+                    #if args.e:
+                        #extended_read_name=Read[i].query_name.split("_")[1]+"_"+str(Read[i].query_sequence)
                     #default format
-                    else:
-                        extended_read_name=Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence
+                    #else:
+                        #extended_read_name=Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence
 
                 if extended_read_name in setReads and extended_read_name not in notsetReads:
                         outfile.write(Read[i])
@@ -231,18 +257,20 @@ for chr in chr_list:
 
                         if args.end:
                             #UMI-tools format
-                            if args.e:
-                                notsetReads.add(Read[i].query_name.split("_")[1] + "_" + Read[i].query_sequence+"_"+str(Read[i].reference_end))
+                            notsetReads.add(extendReadNameEnd)
+                            #if args.e:
+                                #notsetReads.add(Read[i].query_name.split("_")[1] + "_" + Read[i].query_sequence+"_"+str(Read[i].reference_end))
                             #default format
-                            else:
-                                notsetReads.add(Read[i].query_name.split("_")[3] + "_" + Read[i].query_sequence+"_"+str(Read[i].reference_end))
+                            #else:
+                                #notsetReads.add(Read[i].query_name.split("_")[3] + "_" + Read[i].query_sequence+"_"+str(Read[i].reference_end))
                         else:
                             #UMI-tools format
-                            if args.e:
-                                notsetReads.add(Read[i].query_name.split("_")[1]+"_"+str(Read[i].query_sequence))
+                            notsetReads.add(extendReadName)
+                            #if args.e:
+                                #notsetReads.add(Read[i].query_name.split("_")[1]+"_"+str(Read[i].query_sequence))
                             #default format
-                            else:
-                                notsetReads.add(Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence)
+                            #else:
+                                #notsetReads.add(Read[i].query_name.split("_")[3]+"_"+Read[i].query_sequence)
 
                         readSet.add(Read[i].query_name)
 
